@@ -60,4 +60,6 @@ if [[ $rc != 0 ]] ; then
     exit $rc
 fi
 
+sudo docker-compose up 
+
 echo "Done"

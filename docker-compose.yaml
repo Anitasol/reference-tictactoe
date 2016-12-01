@@ -5,7 +5,7 @@ services:
       - 'POSTGRES_HOST=postgres'
       - 'POSTGRES_PORT=5432'
       - 'PORT=3000'
-    image: 'anitaj15/tictactoe:$GIT_COMMIT'
+    image: 'anitaj15/tictactoe:GIT_COMMIT'
     build:
       context: '.'
       dockerfile: 'Dockerfile'
