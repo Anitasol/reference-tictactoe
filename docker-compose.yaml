@@ -2,18 +2,18 @@ version: '2'
 services:
   server:
     environment:
-      - 'POSTGRES_HOST=postgres'
-      - 'POSTGRES_PORT=5432'
+      - 'PGHOST=postgres'
+      - 'PGPORT=5432'
       - 'PORT=3000'
-    image: 'anitaj15/tictactoe:GIT_COMMIT'
-    build:
-      context: '.'
-      dockerfile: 'Dockerfile'
+    image: 'anitaj15/tictactoe'
     ports:
       - '3000:3000'
+      - '8080:8080'
     depends_on:
       - 'postgres'
   postgres:
     image: postgres
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
     ports:
       - "5432:5432"
