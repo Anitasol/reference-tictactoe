@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo Cleaning...
-rm -rf ./dist
+rm -rf ./build
 
 if [ -z "$GIT_COMMIT" ]; then
   export GIT_COMMIT=$(git rev-parse HEAD)
@@ -22,11 +22,15 @@ if [[ $rc != 0 ]] ; then
 fi
 
 
-cat > ./dist/githash.txt <<_EOF_
+cat > ./build/githash.txt <<_EOF_
 $GIT_COMMIT
 _EOF_
 
-cat > ./dist/public/version.html << _EOF_
+cat > ./build/.env <<_EOF_
+GIT_COMMIT=$GIT_COMMIT
+_EOF_
+
+cat > ./build/public/version.html << _EOF_
 <!doctype html>
 <head>
    <title>App version information</title>
@@ -41,11 +45,15 @@ _EOF_
 
 
 cp ./Dockerfile ./build/
+cp ./docker-compose.yaml ./build/
 cp ./package.json ./build/
+cp ./migratedScript.sh ./build/
 cd build
-echo Building docker image
 
-docker build -t anitaj15/tictactoe:$GIT_COMMIT .
+echo Building docker image
+cat $GIT_COMMIT
+
+sudo docker build -t anitaj15/tictactoe:$GIT_COMMIT .
 
 rc=$?
 if [[ $rc != 0 ]] ; then
@@ -53,13 +61,14 @@ if [[ $rc != 0 ]] ; then
     exit $rc
 fi
 
-docker push anitaj15/tictactoe:$GIT_COMMIT
-rc=$?
-if [[ $rc != 0 ]] ; then
-    echo "Docker push failed " $rc
-    exit $rc
-fi
+#sudo docker push anitaj15/tictactoe:$GIT_COMMIT
+#rc=$?
+#if [[ $rc != 0 ]] ; then
+#    echo "Docker push failed " $rc
+#    exit $rc
+#fi
 
-sudo docker-compose up 
+#GIT_COMMIT=githash
+
 
 echo "Done"

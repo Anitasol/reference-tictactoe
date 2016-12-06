@@ -2,10 +2,11 @@ version: '2'
 services:
   server:
     environment:
+      - 'NODE_ENV=production'
       - 'PGHOST=postgres'
       - 'PGPORT=5432'
       - 'PORT=3000'
-    image: 'anitaj15/tictactoe'
+    image: 'anitaj15/tictactoe:${GIT_COMMIT}'
     ports:
       - '3000:3000'
       - '8080:8080'
