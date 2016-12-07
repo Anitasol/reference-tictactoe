@@ -61,14 +61,14 @@ if [[ $rc != 0 ]] ; then
     exit $rc
 fi
 
-#sudo docker push anitaj15/tictactoe:$GIT_COMMIT
-#rc=$?
-#if [[ $rc != 0 ]] ; then
-#    echo "Docker push failed " $rc
-#    exit $rc
-#fi
+sudo docker push anitaj15/tictactoe:$GIT_COMMIT
+rc=$?
+if [[ $rc != 0 ]] ; then
+    echo "Docker push failed " $rc
+    exit $rc
+fi
 
-#GIT_COMMIT=githash
+
 
 
 echo "Done"
