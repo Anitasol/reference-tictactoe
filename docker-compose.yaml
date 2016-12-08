@@ -2,11 +2,17 @@ version: '2'
 services:
   server:
     environment:
+      #variable that makes it run through the production part of the database.json file
       - 'NODE_ENV=production'
+      #postgres host defined
       - 'PGHOST=postgres'
+      #postgres port defined
       - 'PGPORT=5432'
+      #the localhost port
       - 'PORT=3000'
+    #the docker image is defined
     image: 'anitaj15/tictactoe:${GIT_COMMIT}'
+    #the ports that are being used
     ports:
       - '3000:3000'
       - '8080:8080'
@@ -15,6 +21,8 @@ services:
   postgres:
     image: postgres
     environment:
+      #environment is defined
       - POSTGRES_PASSWORD=mysecretpassword
     ports:
+      #the postgres port 
       - "5432:5432"

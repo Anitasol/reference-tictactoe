@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Stop all containers
 docker kill $(docker ps -q)
 #Stop all images
