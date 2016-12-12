@@ -15,6 +15,10 @@ export GITHUB_URL=$(echo $GIT_URL | rev | cut -c 5- | rev)
 
 #
 echo Building app
+npm install --silent
+cd client
+npm install --silent
+cd ..
 npm run build
 
 #If the npm build fails, we want to see a message that tells us so
