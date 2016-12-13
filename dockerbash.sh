@@ -8,6 +8,7 @@ rm -rf ./build
 #Create a Git tag variable called GIT_COMMIT, which gives me the git tag for the latest commit
 if [ -z "$GIT_COMMIT" ]; then
   export GIT_COMMIT=$(git rev-parse HEAD)
+  echo "GIT_COMMIT=$GIT_COMMIT" > .env
   export GIT_URL=$(git config --get remote.origin.url)
 fi
 
