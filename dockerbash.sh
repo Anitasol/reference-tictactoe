@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#comment 
 #Cleaning the build folder so I can start from the begining.
 echo Cleaning...
 rm -rf ./build
