@@ -78,7 +78,7 @@ if [[ $rc != 0 ]] ; then
 fi
 
 #After the build is finnished, we want to push it to docker hub, so we don't loose our work
-sudo docker push anitaj15/tictactoe:$GIT_COMMIT
+docker push anitaj15/tictactoe:$GIT_COMMIT
 
 #If the push fails, then we want to know about it
 rc=$?
