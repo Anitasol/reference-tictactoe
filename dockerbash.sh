@@ -1,5 +1,5 @@
 #!/bin/bash
-#jenkinscheckasljkdlsaj
+
 #Cleaning the build folder so I can start from the begining.
 echo Cleaning...
 rm -rf ./build
@@ -68,7 +68,7 @@ echo Building docker image
 cat $GIT_COMMIT
 
 #This command line builds the docker image from defined repository and the GIT_COMMIT variable
-sudo docker build -t anitaj15/tictactoe:$GIT_COMMIT .
+docker build -t anitaj15/tictactoe:$GIT_COMMIT .
 
 #If the docker doesn't build, then we want to see a message
 rc=$?
