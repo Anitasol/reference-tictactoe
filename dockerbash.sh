@@ -1,5 +1,4 @@
 #!/bin/bash
-#test
 
 #Cleaning the build folder so I can start from the begining.
 echo Cleaning...

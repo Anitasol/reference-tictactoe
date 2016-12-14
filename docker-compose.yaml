@@ -14,8 +14,7 @@ services:
     image: 'anitaj15/tictactoe:${GIT_COMMIT}'
     #the ports that are being used
     ports:
-      - '3000:3000'
-      - '8080:8080'
+      - '80:3000'
     depends_on:
       - 'postgres'
   postgres:
@@ -24,5 +23,5 @@ services:
       #environment is defined
       - POSTGRES_PASSWORD=mysecretpassword
     ports:
-      #the postgres port 
+      #the postgres port
       - "5432:5432"
