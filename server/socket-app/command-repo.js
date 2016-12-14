@@ -35,6 +35,9 @@ module.exports=function(injected){
             console.error('Error storing command object: ' + err)
         }, function(){
             //console.debug('Command stored');
+
+            // Success...do nothing
+
         })
     });
 
