@@ -5,10 +5,15 @@ module.exports = function (injected) {
     return function (history) {
 
         var gamefull=false;
+        var board = [];
+        //console.debug("History", history);
 
         function processEvent(event) {
             if(event.type==="GameJoined"){
                 gamefull=true;
+            }
+            if(event.type==="MovePlaced") {
+              board = ['X'];
             }
         }
 
@@ -20,10 +25,15 @@ module.exports = function (injected) {
             return gamefull;
         }
 
+        function Board(){
+            return board;
+        }
+
         processEvents(history);
 
         return {
             gameFull:gameFull,
+            Board:Board,
             processEvents: processEvents
         }
     };
