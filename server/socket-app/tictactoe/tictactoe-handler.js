@@ -79,6 +79,18 @@ module.exports = function(injected){
                       }];
                       gameState.processEvents(event);
 
+                      if(gameState.winningConditions(cmd)){
+                          event.push({
+                            gameId: cmd.gameId,
+                            type: "GameWon",
+                            user: cmd.user,
+                            name: cmd.name,
+                            timeStamp: cmd.timeStamp,
+                            //side: cmd.side
+                          });
+                          return;
+                      }
+                      //eventHandler(event);
                     }
                 };
 
