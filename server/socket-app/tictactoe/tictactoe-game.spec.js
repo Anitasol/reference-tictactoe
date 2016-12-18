@@ -498,4 +498,94 @@ describe('move place command', function () {
 
     });
 
+    it('should emit game won on verticalWin', function(){
+
+      given = [
+        {
+            type: "GameCreated",
+            user: {
+                userName: "TheGuy"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29"
+        },
+        {
+            type: "GameJoined",
+            user: {
+                userName: "TheGal"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:30:29",
+            side:'O'
+        },
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "TheGuy"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:31:29",
+            placeAt: [0, 0],
+            side: 'X'
+
+        },
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "TheGal"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:32:29",
+            placeAt: [0, 1],
+            side: 'O'
+
+        },
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "TheGuy"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:33:29",
+            placeAt: [1, 0],
+            side: 'X'
+
+        },
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "TheGal"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:34:29",
+            placeAt: [0, 2],
+            side: 'O'
+
+        }
+      ];
+      when =
+      {
+          type: "PlaceMove",
+          user: {
+              userName: "TheGuy"
+          },
+          name: "TheFirstGame",
+          timeStamp: "2014-12-02T11:35:29",
+          placeAt: [2, 0],
+          side: 'X'
+
+      };
+      then = [
+        {
+            type: "GameWon",
+            user: {
+                userName: "TheGuy"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:35:29"
+        }
+      ];
+
+    });
+
 });
