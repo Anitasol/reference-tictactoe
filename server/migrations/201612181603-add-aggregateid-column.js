@@ -1,5 +1,3 @@
-'use strict';
-
 var dbm;
 var type;
 var seed;
@@ -14,12 +12,14 @@ exports.setup = function(options, seedLink) {
   seed = seedLink;
 };
 
-exports.up = function(db,callback) {
-  db.addColumn('eventlog',
-    'aggregate_id', {
+exports.up = function(db,callback){
+   db.addColumn('eventlog',
+   'aggregate_id',{
       type: 'string'
-  }, callback);
-};
+    },
+    callback
+    );
+  };
 
 exports._meta = {
   "version": 1
