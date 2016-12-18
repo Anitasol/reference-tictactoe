@@ -80,17 +80,23 @@ module.exports = function (injected) {
           return false;
         }
 
+        function gameDraw(event) {
+          for(var i = 0; i < board.length; i++){
+            if(board[i] == null){
+              return false;
+            }
+          }
+          return true;
+        }
+
         processEvents(history);
 
         return {
             gameFull:gameFull,
-            switchPlayer:switchPlayer,
             isOccupied:isOccupied,
             currentPlayer:currentPlayer,
             winningConditions:winningConditions,
-            horizontalWin:horizontalWin,
-            verticalWin:verticalWin,
-            diagonalWin:diagonalWin,
+            gameDraw:gameDraw,
             processEvents: processEvents
         }
     };

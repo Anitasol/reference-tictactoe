@@ -80,17 +80,26 @@ module.exports = function(injected){
                       gameState.processEvents(event);
 
                       if(gameState.winningConditions(cmd)){
-                          event.push({
+                          eventHandler([{
                             gameId: cmd.gameId,
                             type: "GameWon",
                             user: cmd.user,
                             name: cmd.name,
-                            timeStamp: cmd.timeStamp,
-                            //side: cmd.side
-                          });
+                            timeStamp: cmd.timeStamp
+                          }]);
                           return;
                       }
-                      //eventHandler(event);
+
+                      if(gameState.gameDraw(cmd)){
+                          eventHandler([{
+                            gameId: cmd.gameId,
+                            type: "Draw",
+                            user: cmd.user,
+                            name: cmd.name,
+                            timeStamp: cmd.timeStamp
+                          }]);
+                          return;
+                      }
                     }
                 };
 
