@@ -5,16 +5,18 @@ module.exports = function (injected) {
     return function (history) {
 
         var gamefull=false;
-        var board = [];
-        //console.debug("History", history);
+        var board = new Array(9);
+        var playerTurn = 'X';
 
         function processEvent(event) {
             if(event.type==="GameJoined"){
                 gamefull=true;
             }
             if(event.type==="MovePlaced") {
-              board = ['X'];
+              board[event.placeAt] = event.side;
+              switchPlayer();
             }
+
         }
 
         function processEvents(history) {
@@ -25,15 +27,34 @@ module.exports = function (injected) {
             return gamefull;
         }
 
-        function Board(){
-            return board;
+        function switchPlayer(){
+
+            if(playerTurn == 'X'){
+              playerTurn = 'O';
+            }
+            else {
+              playerTurn = 'X';
+            }
+        }
+
+        function isOccupied(placeAt) {
+            return board[placeAt] != null;
+        }
+
+        function currentPlayer(side) {
+          if(side == playerTurn){
+            return true;
+          }
+          return false;
         }
 
         processEvents(history);
 
         return {
             gameFull:gameFull,
-            Board:Board,
+            switchPlayer:switchPlayer,
+            isOccupied:isOccupied,
+            currentPlayer:currentPlayer,
             processEvents: processEvents
         }
     };
