@@ -69,5 +69,3 @@ Did you use any of the following features in Jenkins?
 - Pipeline
 
 - Jenkins file
-
-- Webhook
